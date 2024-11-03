@@ -53,6 +53,29 @@ app.get('/books', async (req, res) => {
     }
 });
 
+//Problem 4
+async function bookDetailByTitle(bookTitle){
+    try{
+        const book = await Book.findOne({title: bookTitle})
+        return book;
+    }catch(error){
+        throw error;
+    }
+}
+
+app.get('/books/:bookTitle', async (req, res) => {
+    try{
+        const book = await bookDetailByTitle(req.params.bookTitle);
+        if(book){
+            res.json(book)
+        } else {
+            res.status(404).json({error: 'Book not found.'})
+        }
+    }catch(error){
+        res.status(500).json({error: "Failed to fetch book."})
+    }
+})
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)
