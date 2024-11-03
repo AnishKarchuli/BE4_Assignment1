@@ -5,7 +5,7 @@ const initializeDatabase = async () => {
     try{
         const connection = mongoose.connect(mongoURI, {
             useNewUrlParser: true,
-            useUnifiedTopologu: true
+            useUnifiedTopology: true
         });
         if(connection){
             console.log('Connected Successfully')
