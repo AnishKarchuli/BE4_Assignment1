@@ -122,6 +122,29 @@ app.get('/books/genre/:genreName', async (req, res) => {
     }
 })
 
+// Problem 7
+async function readAllBooksByReleaseYear(bookReleaseYear){
+    try{
+        const books = await Book.find({publishedYear: bookReleaseYear})
+        return books;
+    }catch(error){
+        throw error;
+    }
+}
+
+app.get('/books/releaseYear/:bookReleaseYear', async (req, res) => {
+    try{
+        const books = await readAllBooksByReleaseYear(req.params.bookReleaseYear)
+        if(books){
+            res.json(books)
+        } else {
+            res.status(404).json({error: 'Books not found.'})
+        }
+    }catch(error){
+        res.status(500).json({error: 'Failed to fetch books.'})
+    }
+})
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)
