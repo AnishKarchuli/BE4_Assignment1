@@ -1,0 +1,18 @@
+const mongoose = require('mongoose')
+const mongoURI = process.env.MONGODB_URI;
+
+const initializeDatabase = async () => {
+    try{
+        const connection = mongoose.connect(mongoURI, {
+            useNewUrlParser: true,
+            useUnifiedTopologu: true
+        });
+        if(connection){
+            console.log('Connected Successfully')
+        }
+    }catch(error){
+        console.log('Connection failed', error)
+    }
+}
+
+module.exports = { initializeDatabase }
