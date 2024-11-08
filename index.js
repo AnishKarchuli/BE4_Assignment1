@@ -199,7 +199,6 @@ app.post("/books/title/:bookTitle", async (req, res) => {
       res.status(404).json({ error: "Book does not exist." });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Failed to update book data." });
   }
 });
