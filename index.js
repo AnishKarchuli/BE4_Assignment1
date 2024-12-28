@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "https://bi-1-3-hw-1-mocha.vercel.app/",
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 }
